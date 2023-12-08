@@ -19,7 +19,7 @@ export function addItem(item) {
   let currentItemsReadyToWrite
 
   currentItems.length === 0 ?
-    currentItemsReadyToWrite = `${item}`:
+    currentItemsReadyToWrite = `${item}` :
     currentItemsReadyToWrite = `${currentItems.join(`${delimiter}`)}${delimiter}${item}`
 
   db.write(currentItemsReadyToWrite)

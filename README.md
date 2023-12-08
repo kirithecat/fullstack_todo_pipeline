@@ -3,11 +3,6 @@ This is a simple html app with some basic "TODO list" functionality.
 
 ![user interface of the app](./readme/user-interface.png)
 
-# Instructions
-> 21.09.2023 If you were an attendee of the workshop and want to do it again in your spare time.
-> 
-> Find the file called `instructions.md` and follow the checklist
-
 ## Run the app
 - Navigate to the `src/webapp` folder
 - `npm install`
