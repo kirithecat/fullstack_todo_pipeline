@@ -1,6 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
+//TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
 const httpsPort = 443
 
