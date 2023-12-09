@@ -1,6 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
+const {getItems} = require("./db");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
 const httpsPort = 443
@@ -19,7 +20,8 @@ const httpsOptions = {
 };
 
 app.get('/items/', (req, res) => {
-  res.send('here is your list of items!')
+  const items = getItems()
+  res.send('here is your list of items!', items)
 })
 
 app.post('/items/', (req, res) => {
