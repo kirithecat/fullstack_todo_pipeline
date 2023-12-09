@@ -1,6 +1,21 @@
 const express = require('express')
+const https = require('https')
+const {readFileSync} = require("node:fs");
 const app = express()
-const port = 3000
+const httpsPort = 443
+
+//using mkcert to generate key/certificate for localhost
+//- https://github.com/FiloSottile/mkcert
+//- https://stackoverflow.com/a/54083405
+//------------------------------------------------
+//---IMPORTANT: mkcert installs local root CA!!!--
+//------------------------------------------------
+const httpsOptions = {
+  key: readFileSync('./localhost/localhost+2-key.pem'),
+  cert: readFileSync('./localhost/localhost+2.pem'),
+  requestCert: false,
+  rejectUnauthorized: false
+};
 
 app.get('/items/', (req, res) => {
   res.send('here is your list of items!')
@@ -30,7 +45,6 @@ app.post('/items/reset', (req, res) => {
   res.send('reseted items!')
 })
 
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+https.createServer(httpsOptions, app).listen(httpsPort, () => {
+  console.log(`Example app listening on port ${httpsPort}`)
 })
