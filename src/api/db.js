@@ -1,24 +1,12 @@
-const mysql = require('mysql2')
+const db = require('better-sqlite3')('tododb', {})//todo do I need it for sqlite???
+//config package allows you to select values based on the environment (dev/prod)
+//see the ./config subfolder
 const config = require('config')
 
+
 function getItems() {
-  const dbConfig = config.get('mysql')
-  const connection = mysql.createConnection({
-    host: dbConfig.host,
-    user: dbConfig.user,
-    password: dbConfig.password,
-    database: dbConfig.dbname
-  })
-
-  connection.connect()
-
-  connection.query('SELECT * FROM items', (err, rows, fields) => {
-    if (err) throw err
-
-    console.log('The solution is: ', rows[0].Item)
-  })
-
-  connection.end()
+  const row = db.prepare('SELECT * FROM users WHERE id = ?').get(userId);
+  console.log(row.firstName, row.lastName, row.email);
 }
 
 module.exports = {
