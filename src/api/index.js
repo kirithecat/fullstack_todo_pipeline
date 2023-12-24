@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
-const {getItems} = require("./db");
+const {getItems, getItem} = require("./db");
 const {isAuthorised} = require("./middleware/auth");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -41,7 +41,9 @@ app.post('/items/', (req, res) => {
 })
 
 app.get('/items/:index', (req, res) => {
-  res.send(`here is your item with ${req.params.index} index`)
+  const items = getItem(req.params.index)
+
+  res.send(items[0])
 })
 
 app.delete('/items/:index', (req, res) => {

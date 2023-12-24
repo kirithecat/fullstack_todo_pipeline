@@ -17,13 +17,12 @@ function getItems() {
 }
 
 function getItem(id) {
-  const rows = db.exec(`SELECT *
+  const rows = db.prepare(`SELECT *
                         FROM Items
-                        where id = ${id}`);
+                        WHERE id = ${id}`);
   return rows.all()
 }
 
 module.exports = {
-  getItems: getItems,
-  getItem: getItem
+  getItems: getItems, getItem: getItem
 }
