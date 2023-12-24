@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
-const {getItems, getItem} = require("./db");
+const {getItems, getItem, addItem} = require("./db");
 const {isAuthorised} = require("./middleware/auth");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -27,6 +27,8 @@ app.route('/*').all((req, res, next) => {
   isAuthorised()
   next()
 })
+//parse request body as JSON
+app.use(express.json())
 
 //--------------------------------
 //----------routes----------------
@@ -37,7 +39,8 @@ app.get('/items/', (req, res) => {
 })
 
 app.post('/items/', (req, res) => {
-  res.send('added an item!')
+  const item = addItem(req.body.item)
+  res.send(item)
 })
 
 app.get('/items/:index', (req, res) => {

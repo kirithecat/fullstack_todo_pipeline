@@ -18,11 +18,24 @@ function getItems() {
 
 function getItem(id) {
   const rows = db.prepare(`SELECT *
-                        FROM Items
-                        WHERE id = ${id}`);
+                           FROM Items
+                           WHERE id = ${id}`);
   return rows.all()
 }
 
+function addItem(item) {
+  console.log(`INSERT
+               INTO Items ("id", "name")
+               VALUES (NULL, '${item}'");`)
+  const statement = db.prepare(`INSERT
+                                INTO Items ("id", "name")
+                                VALUES (NULL, '${item}');`)
+  const result = statement.run()
+  return result
+}
+
 module.exports = {
-  getItems: getItems, getItem: getItem
+  getItems,
+  getItem,
+  addItem
 }
