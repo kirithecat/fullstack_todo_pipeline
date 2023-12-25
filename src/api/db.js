@@ -24,9 +24,6 @@ function getItem(id) {
 }
 
 function addItem(item) {
-  console.log(`INSERT
-               INTO Items ("id", "name")
-               VALUES (NULL, '${item}'");`)
   const statement = db.prepare(`INSERT
                                 INTO Items ("id", "name")
                                 VALUES (NULL, '${item}');`)
@@ -36,8 +33,16 @@ function addItem(item) {
   }
 }
 
+function deleteItem(id) {
+  const statement = db.prepare(`DELETE
+               FROM Items 
+               WHERE id = ${id}`)
+  statement.run()
+}
+
 module.exports = {
   getItems,
   getItem,
-  addItem
+  addItem,
+  deleteItem
 }

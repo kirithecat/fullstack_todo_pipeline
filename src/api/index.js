@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
-const {getItems, getItem, addItem} = require("./db");
+const {getItems, getItem, addItem, deleteItem} = require("./db");
 const {isAuthorised} = require("./middleware/auth");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -46,7 +46,8 @@ app.get('/items/:index', (req, res) => {
 })
 
 app.delete('/items/:index', (req, res) => {
-  res.send(`deleted an item with an ${req.params.index} index`)
+  deleteItem(req.params.index)
+  res.send()
 })
 
 app.patch('/items/:index', (req, res) => {
