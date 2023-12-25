@@ -35,8 +35,15 @@ function addItem(item) {
 
 function deleteItem(id) {
   const statement = db.prepare(`DELETE
-               FROM Items 
-               WHERE id = ${id}`)
+                                FROM Items
+                                WHERE id = ${id}`)
+  statement.run()
+}
+
+function updateItem(id, name) {
+  const statement = db.prepare(`UPDATE Items
+                                SET name = '${name}'
+                                WHERE id = ${id}`)
   statement.run()
 }
 
@@ -44,5 +51,6 @@ module.exports = {
   getItems,
   getItem,
   addItem,
-  deleteItem
+  deleteItem,
+  updateItem
 }
