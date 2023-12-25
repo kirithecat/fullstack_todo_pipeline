@@ -20,7 +20,7 @@ function getItem(id) {
   const rows = db.prepare(`SELECT *
                            FROM Items
                            WHERE id = ${id}`);
-  return rows.all()
+  return rows.all()[0]
 }
 
 function addItem(item) {

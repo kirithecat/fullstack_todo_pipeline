@@ -34,19 +34,15 @@ app.use(express.json())
 //----------routes----------------
 //--------------------------------
 app.get('/items/', (req, res) => {
-  const items = getItems()
-  res.send(items)
+  res.send(getItems())
 })
 
 app.post('/items/', (req, res) => {
-  const item = addItem(req.body.item)
-  res.send(item)
+  res.send(addItem(req.body.item))
 })
 
 app.get('/items/:index', (req, res) => {
-  const items = getItem(req.params.index)
-
-  res.send(items[0])
+  res.send(getItem(req.params.index))
 })
 
 app.delete('/items/:index', (req, res) => {
