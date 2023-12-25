@@ -30,8 +30,10 @@ function addItem(item) {
   const statement = db.prepare(`INSERT
                                 INTO Items ("id", "name")
                                 VALUES (NULL, '${item}');`)
-  const result = statement.run()
-  return result
+  const {lastInsertRowid} = statement.run()
+  return {
+    id: lastInsertRowid
+  }
 }
 
 module.exports = {
