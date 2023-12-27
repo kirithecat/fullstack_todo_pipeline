@@ -2,7 +2,7 @@ import * as db from "./db.js";
 import {reset} from "./db.js";
 
 const delimiter = '\\(^_^)/'
-
+const backendBaseURL = 'https://localhost:443/'
 export function getCurrentItems() {
   let result
   const items = db.read() || ""

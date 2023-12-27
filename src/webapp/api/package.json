@@ -1,8 +1,8 @@
 {
   "name": "api",
   "version": "1.0.0",
-  "description": "API to access todo items",
-  "main": "api.js",
+  "description": "Business logic layer for todo items",
+  "main": "business-logic.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage"

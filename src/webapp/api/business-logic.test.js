@@ -1,4 +1,4 @@
-import * as api from "./api";
+import * as api from "./business-logic";
 import * as db from "./db";
 
 const defaultItems = ["Buy Milk", "Relax", "Complete all tasks"]
