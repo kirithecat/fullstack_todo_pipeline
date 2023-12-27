@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
-const {getItems, getItem, addItem, deleteItem, updateItem, resetItems} = require("./db");
+const {getItems, getItem, addItem, deleteItem, updateItem, resetItems, resetDefaultItems} = require("./db");
 const {isAuthorised} = require("./middleware/auth");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -57,11 +57,14 @@ app.patch('/items/:index', (req, res) => {
 })
 
 app.post('/items/reset/default', (req, res) => {
-  res.send('reseted items to default list!')
+  resetItems()
+  resetDefaultItems()
+  res.send()
 })
 
 app.post('/items/reset', (req, res) => {
-  res.send('reseted items!')
+  resetItems()
+  res.send()
 })
 
 

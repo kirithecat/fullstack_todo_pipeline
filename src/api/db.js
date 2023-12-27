@@ -48,12 +48,18 @@ function updateItem(id, name) {
 }
 
 function resetItems() {
-  const statement = db.prepare(`DELETE FROM Items`)
+  const statement = db.prepare(`DELETE
+                                FROM Items`)
   statement.run()
 }
 
 function resetDefaultItems() {
-  const statement = db.prepare(`DELETE FROM Items`)
+  const statement = db.prepare(`INSERT
+                                INTO Items ("id", "name")
+                                VALUES (NULL, 'Buy Milk'),
+                                       (NULL, 'Relax'),
+                                       (NULL, 'Complete all tasks')
+  `)
   statement.run()
 }
 
