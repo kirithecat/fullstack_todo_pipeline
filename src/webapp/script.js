@@ -1,4 +1,4 @@
-import * as api from './api/api.js'
+import * as api from './api/business-logic.js'
 
 let todoForm = document.getElementById('todo-form');
 let todoInput = document.getElementById('todo-input');
