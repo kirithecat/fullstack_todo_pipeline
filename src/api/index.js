@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 const {readFileSync} = require("node:fs");
-const {getItems, getItem, addItem, deleteItem, updateItem} = require("./db");
+const {getItems, getItem, addItem, deleteItem, updateItem, resetItems} = require("./db");
 const {isAuthorised} = require("./middleware/auth");
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()

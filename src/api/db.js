@@ -47,10 +47,22 @@ function updateItem(id, name) {
   statement.run()
 }
 
+function resetItems() {
+  const statement = db.prepare(`DELETE FROM Items`)
+  statement.run()
+}
+
+function resetDefaultItems() {
+  const statement = db.prepare(`DELETE FROM Items`)
+  statement.run()
+}
+
 module.exports = {
   getItems,
   getItem,
   addItem,
   deleteItem,
-  updateItem
+  updateItem,
+  resetItems,
+  resetDefaultItems
 }
