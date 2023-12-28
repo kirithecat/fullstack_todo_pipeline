@@ -23,18 +23,10 @@ export async function addItem(item) {
 }
 
 export async function deleteItem(index) {
-  const currentItems = await getCurrentItems()
-  if (currentItems.length === 0) {
-    console.log('There are no items in the list. Nothing to delete') //todo add early return here
-  }
-
-  reset()
-  const listWithoutItem = currentItems.splice(index, 1)
-  let currentItemsReadyToWrite
-  listWithoutItem.length === 0 ? currentItemsReadyToWrite = "" : currentItemsReadyToWrite = currentItems.join(`${delimiter}`)
-
-  //a bit of a hack, but remove() method actually calls write() inside
-  db.remove(currentItemsReadyToWrite)
+  //TODO: here is the bug on the DB SQL side. id column need to be updated when removing a row.
+  const response = await fetch(`${backendBaseURL}/items/${index}`, {
+    method: "DELETE",
+  })
 }
 
 export async function resetToDefaultItems() {

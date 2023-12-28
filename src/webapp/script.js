@@ -67,7 +67,8 @@ function registerEventListenersForDeleteButtons() {
 
   for (const deleteButton of deleteButtonsArray) {
     deleteButton.addEventListener('click', async (event) => {
-      await deleteTodo(event.target.name)
+      const itemIndex = event.target.name
+      await deleteTodo(itemIndex)
     });
   }
 }
