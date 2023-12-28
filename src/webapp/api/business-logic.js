@@ -2,31 +2,32 @@ import * as db from "./db.js";
 import {reset} from "./db.js";
 
 const delimiter = '\\(^_^)/'
-const backendBaseURL = 'https://localhost:443/'
-export function getCurrentItems() {
-  let result
-  const items = db.read() || ""
+const backendBaseURL = 'https://localhost:443'
 
-  items.length === 0 ?
-    result = [] :
-    result = items.split(delimiter);
-
-  return result
+export async function getCurrentItems() {
+  const response = await fetch(`${backendBaseURL}/items`)
+  if (response.ok) {
+    const jsonResponse = await response.json()
+    return jsonResponse.map(obj => obj.name)
+  } else {
+    // Handle the error if the request was not successful
+    throw new Error(`Failed to fetch data from the backend: ${backendBaseURL}/items`);
+  }
 }
 
-export function addItem(item) {
-  const currentItems = getCurrentItems()
-  let currentItemsReadyToWrite
-
-  currentItems.length === 0 ?
-    currentItemsReadyToWrite = `${item}` :
-    currentItemsReadyToWrite = `${currentItems.join(`${delimiter}`)}${delimiter}${item}`
-
-  db.write(currentItemsReadyToWrite)
+export async function addItem(item) {
+  const body = {"item": item}
+  await fetch(`${backendBaseURL}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
 }
 
-export function deleteItem(index) {
-  const currentItems = getCurrentItems()
+export async function deleteItem(index) {
+  const currentItems = await getCurrentItems()
   if (currentItems.length === 0) {
     console.log('There are no items in the list. Nothing to delete') //todo add early return here
   }

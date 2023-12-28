@@ -4,7 +4,7 @@
   "description": "Simple todo list",
   "main": "script.js",
   "scripts": {
-    "start-server": "http-server -a localhost -p 8080 -c-1"
+    "start-webapp": "http-server -a localhost -p 8080 -c-1"
   },
   "author": "Ivan Karaman aka @ivanAndCode",
   "license": "ISC",

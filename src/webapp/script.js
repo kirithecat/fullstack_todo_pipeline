@@ -9,23 +9,23 @@ let deleteButtons = document.getElementsByClassName('delete-button');
 // it will:
 // 1. render the page
 // 2. register other event listeners for the buttons
-document.addEventListener('DOMContentLoaded', function () {
-  renderPage()
+document.addEventListener('DOMContentLoaded', async function () {
+  await renderPage();
 
   //submit form is never deleted, event listener can be registered here
-  registerEventListenerForTodoFormSubmit()
-  registerEventListenerForRemoveAll()
-  registerEventListenerForResetDefault()
+  await registerEventListenerForTodoFormSubmit()
+  await registerEventListenerForRemoveAll()
+  await registerEventListenerForResetDefault()
 });
 
-function renderPage() {
-  renderTodoList()
-  cleanTodoInputValue()
-  putFocusIntoTodoInput()
-  renderTodoListLengthWarning()
+async function renderPage() {
+  await renderTodoList()
+  await cleanTodoInputValue()
+  await putFocusIntoTodoInput()
+  await renderTodoListLengthWarning()
 
   //delete buttons are dynamic, registering event listeners each time page changes
-  registerEventListenersForDeleteButtons()
+  await registerEventListenersForDeleteButtons()
 }
 
 function cleanTodoInputValue() {
@@ -42,22 +42,22 @@ function putFocusIntoTodoInput() {
 
 function registerEventListenerForRemoveAll() {
   const removeAllButton = document.getElementById('remove-all');
-  removeAllButton.addEventListener('click', () => {
-    resetItems()
+  removeAllButton.addEventListener('click', async () => {
+    await resetItems()
   })
 }
 
 function registerEventListenerForResetDefault() {
   const resetDefaultButton = document.getElementById('reset-default');
-  resetDefaultButton.addEventListener('click', () => {
-    resetDefaultItems()
+  resetDefaultButton.addEventListener('click', async () => {
+    await resetDefaultItems()
   })
 }
 
 function registerEventListenerForTodoFormSubmit() {
-  todoForm.addEventListener('submit', (event) => {
+  todoForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    addTodo();
+    await addTodo();
   });
 }
 
@@ -66,14 +66,14 @@ function registerEventListenersForDeleteButtons() {
   const deleteButtonsArray = [].slice.call(deleteButtons);
 
   for (const deleteButton of deleteButtonsArray) {
-    deleteButton.addEventListener('click', (event) => {
-      deleteTodo(event.target.name)
+    deleteButton.addEventListener('click', async (event) => {
+      await deleteTodo(event.target.name)
     });
   }
 }
 
-function renderTodoList() {
-  const todos = api.getCurrentItems()
+async function renderTodoList() {
+  const todos = await api.getCurrentItems()
 
   todoList.innerHTML = '';
   todos.forEach((todo, index) => {
@@ -90,7 +90,7 @@ function getInnerHtmlOfTodoItem(todoItem, index) {
     `;
 }
 
-function addTodo() {
+async function addTodo() {
   const todoText = todoInput.value.trim();
 
   if (todoInput.value.length === 0) {
@@ -102,32 +102,32 @@ function addTodo() {
   }
 
   if (todoText.length === 0) {
-    renderPage()
+    await renderPage()
     return
   }
 
-  api.addItem(todoText);
-  renderPage();
+  await api.addItem(todoText);
+  await renderPage();
   todoInput.value = '';
 }
 
-function deleteTodo(index) {
-  api.deleteItem(index)
-  renderPage()
+async function deleteTodo(index) {
+  await api.deleteItem(index)
+  await renderPage()
 }
 
-function resetItems() {
-  api.resetItems()
-  renderPage()
+async function resetItems() {
+  await api.resetItems()
+  await renderPage()
 }
 
-function resetDefaultItems() {
-  api.resetToDefaultItems()
-  renderPage()
+async function resetDefaultItems() {
+  await api.resetToDefaultItems()
+  await renderPage()
 }
 
-function renderTodoListLengthWarning() {
-  const todos = api.getCurrentItems() //todo fix this to use cookie value
+async function renderTodoListLengthWarning() {
+  const todos = await api.getCurrentItems() //todo fix this to use cookie value
   const banner = document.getElementById('banner');
 
   if (todos.length > 10) {

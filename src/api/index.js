@@ -20,6 +20,15 @@ const httpsOptions = {
   rejectUnauthorized: false
 };
 
+//TODO this is not safe
+// Enable CORS for all routes
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace '*' with the origin of your frontend
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 //--------------------------------
 //---------middleware-------------
 //--------------------------------
