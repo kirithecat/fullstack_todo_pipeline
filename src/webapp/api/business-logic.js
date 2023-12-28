@@ -18,11 +18,7 @@ export async function getCurrentItems() {
 export async function addItem(item) {
   const body = {"item": item}
   await fetch(`${backendBaseURL}/items`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
+    method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body),
   })
 }
 
@@ -35,18 +31,20 @@ export async function deleteItem(index) {
   reset()
   const listWithoutItem = currentItems.splice(index, 1)
   let currentItemsReadyToWrite
-  listWithoutItem.length === 0 ?
-    currentItemsReadyToWrite = "" :
-    currentItemsReadyToWrite = currentItems.join(`${delimiter}`)
+  listWithoutItem.length === 0 ? currentItemsReadyToWrite = "" : currentItemsReadyToWrite = currentItems.join(`${delimiter}`)
 
   //a bit of a hack, but remove() method actually calls write() inside
   db.remove(currentItemsReadyToWrite)
 }
 
-export function resetToDefaultItems() {
-  db.resetToDefaultItems()
+export async function resetToDefaultItems() {
+  const response = await fetch(`${backendBaseURL}/items/reset/default`, {
+    method: "POST",
+  })
 }
 
-export function resetItems() {
-  db.reset()
+export async function resetItems() {
+  const response = await fetch(`${backendBaseURL}/items/reset`, {
+    method: "POST",
+  })
 }
