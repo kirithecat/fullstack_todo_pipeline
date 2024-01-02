@@ -1,4 +1,4 @@
-const db = require('better-sqlite3')('tododb', {})
+const db = require('better-sqlite3')('tododb', {verbose: console.log})
 db.pragma('journal_mode = WAL');
 
 //todo do I need config for sqlite???
@@ -34,16 +34,27 @@ function addItem(item) {
 }
 
 function deleteItem(id) {
-  const statement = db.prepare(`DELETE
+  const deleteItem = db.prepare(`DELETE
                                 FROM Items
-                                WHERE id = ${id}`)
-  statement.run()
+                                WHERE id = ${id} + 1; --incremented to match the 1-based indexing of sql vs 0-based in DOM`)
+  const makeIdsSequential = db.prepare(`
+      UPDATE Items
+      SET id = id - 1
+      WHERE id > ${id};
+  `)
+
+  const transaction = db.transaction(() => {
+    deleteItem.run()
+    makeIdsSequential.run()
+  });
+  transaction()
 }
 
 function updateItem(id, name) {
   const statement = db.prepare(`UPDATE Items
                                 SET name = '${name}'
-                                WHERE id = ${id}`)
+                                WHERE id = ${id};
+  `)
   statement.run()
 }
 
@@ -64,11 +75,5 @@ function resetDefaultItems() {
 }
 
 module.exports = {
-  getItems,
-  getItem,
-  addItem,
-  deleteItem,
-  updateItem,
-  resetItems,
-  resetDefaultItems
+  getItems, getItem, addItem, deleteItem, updateItem, resetItems, resetDefaultItems
 }
