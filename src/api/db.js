@@ -7,6 +7,8 @@ db.pragma('journal_mode = WAL');
 const config = require('config')
 
 const {readFileSync} = require("node:fs");
+//todo do I need this?
+//possibly need to move into a separate file with the readme for the initial DB creation
 const migration = readFileSync('../db/migrations/001-initial.sql', 'utf8');
 
 //db.exec(migration)
