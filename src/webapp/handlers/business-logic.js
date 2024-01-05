@@ -1,7 +1,4 @@
-import * as db from "./db.js";
-import {reset} from "./db.js";
-
-const delimiter = '\\(^_^)/'
+import fetch from "node-fetch";
 const backendBaseURL = 'https://localhost:443'
 
 export async function getCurrentItems() {

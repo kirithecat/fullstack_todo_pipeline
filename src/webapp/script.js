@@ -1,4 +1,4 @@
-import * as api from './api/business-logic.js'
+import * as handlers from './handlers/business-logic.js'
 
 let todoForm = document.getElementById('todo-form');
 let todoInput = document.getElementById('todo-input');
@@ -74,7 +74,7 @@ function registerEventListenersForDeleteButtons() {
 }
 
 async function renderTodoList() {
-  const todos = await api.getCurrentItems()
+  const todos = await handlers.getCurrentItems()
 
   todoList.innerHTML = '';
   todos.forEach((todo, index) => {
@@ -107,28 +107,28 @@ async function addTodo() {
     return
   }
 
-  await api.addItem(todoText);
+  await handlers.addItem(todoText);
   await renderPage();
   todoInput.value = '';
 }
 
 async function deleteTodo(index) {
-  await api.deleteItem(index)
+  await handlers.deleteItem(index)
   await renderPage()
 }
 
 async function resetItems() {
-  await api.resetItems()
+  await handlers.resetItems()
   await renderPage()
 }
 
 async function resetDefaultItems() {
-  await api.resetToDefaultItems()
+  await handlers.resetToDefaultItems()
   await renderPage()
 }
 
 async function renderTodoListLengthWarning() {
-  const todos = await api.getCurrentItems() //todo fix this to use cookie value
+  const todos = await handlers.getCurrentItems() //todo fix this to use cookie value
   const banner = document.getElementById('banner');
 
   if (todos.length > 10) {
