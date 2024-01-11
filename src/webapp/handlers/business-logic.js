@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 const backendBaseURL = 'https://localhost:443'
 
 export async function getCurrentItems() {
