@@ -6,21 +6,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="page-container">
-        <div><todo-header/></div>
-        <div><todo-add/></div>
-        <div><warning-banner/></div>
-        <div><todo-list/></div>
-
-
-        <button type="reset" id="remove-all">Remove all tasks</button>
-        <button type="button" id="reset-default">Reset all tasks (default)</button>
+<div id="page-container">
+    <div>
+        <todo-header/>
     </div>
+    <div>
+        <todo-add/>
+    </div>
+    <div>
+        <warning-banner/>
+    </div>
+    <div>
+        <todo-list/>
+    </div>
+    <div>
+        <todo-buttons/>
+    </div>
+</div>
 </body>
 
 <script type="module" src="script.js"></script>
-<script src="./components/todo-header.js"  ></script>
-<script src="components/todo-add.js"  ></script>
-<script src="./components/warning-banner.js"   ></script>
-<script src="components/todo-list.js"  ></script>
+<script src="./components/todo-header.js"></script>
+<script src="components/todo-add.js"></script>
+<script src="./components/warning-banner.js"></script>
+<script src="components/todo-list.js"></script>
+<script src="components/buttons.js"></script>
+
 </html>
