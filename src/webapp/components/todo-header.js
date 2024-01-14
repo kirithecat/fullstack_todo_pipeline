@@ -1,7 +1,7 @@
 class TodoHeader extends HTMLElement {
   constructor() {
     super();
-    this.innerHTML = `<h1>Todo List</h1>`;
+    this.innerHTML = `<div><h1>Todo List</h1></div>`;
   }
 }
 
