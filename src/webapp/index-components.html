@@ -5,22 +5,50 @@
     <title>Todo App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script type="module" src="script.js" defer></script>
-<script src="todo-header.js" defer></script>
+<script>
+  // Place in header (do not use async or defer)
+  // document.addEventListener('readystatechange', event => {
+  //   switch (document.readyState) {
+  //     case "loading":
+  //       console.log("document.readyState: ", document.readyState,
+  //         `- The document is still loading.`
+  //       );
+  //       break;
+  //     case "interactive":
+  //       console.log("document.readyState: ", document.readyState,
+  //         `- The document has finished loading DOM. `,
+  //         `- "DOMContentLoaded" event`
+  //       );
+  //       break;
+  //     case "complete":
+  //       console.log("document.readyState: ", document.readyState,
+  //         `- The page DOM with Sub-resources are now fully loaded. `,
+  //         `- "load" event`
+  //       );
+  //       break;
+  //   }
+  // });
+</script>
 <body>
-<div id="container">
-    <todo-header></todo-header>
-    <form id="todo-form">
-        <input type="text" id="todo-input" placeholder="Add a new task...">
-        <button type="submit" id="todo-submit">Add</button>
-    </form>
-    <div id="banner">
-        <p>Warning: Your todo list is getting long!</p>
+    <div id="container">
+
+<!--        <warning-banner/>-->
+<!--        <new-task/>-->
+<!--        <todo-header/>-->
+        <div id="banner">
+            <p>Warning: Your todo list is getting long!</p>
+        </div>
+
+        <ul id="todo-list">
+        </ul>
+
+        <button type="reset" id="remove-all">Remove all tasks</button>
+        <button type="button" id="reset-default">Reset all tasks (default)</button>
     </div>
-    <ul id="todo-list">
-    </ul>
-    <button type="reset" id="remove-all">Remove all tasks</button>
-    <button type="button" id="reset-default">Reset all tasks (default)</button>
-</div>
 </body>
+
+<script type="module" src="script.js"></script>
+<script src="./components/todo-header.js"  ></script>
+<script src="./components/new-task.js"  ></script>
+<script src="./components/warning-banner.js"   ></script>
 </html>
