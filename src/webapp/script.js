@@ -4,19 +4,7 @@ import * as handlers from './handlers/business-logic.js'
 // it will:
 // 1. render the page
 // 2. register other event listeners for the buttons
-//document.addEventListener('DOMContentLoaded', async function () {
-console.log("0 - script.js begins to execute, document.readyState is: ", document.readyState);
-
-document.addEventListener('DOMContentLoaded', async (event) => {
-  console.log("1 - document.readyState is: ", document.readyState);
-
-  if (event.target.readyState === "interactive") {
-    console.log('sdsdfsd')
-    //initLoader();
-  } else if (event.target.readyState === "complete") {
-    console.log('121111')
-    //initApp();
-  }
+document.addEventListener('DOMContentLoaded', async () => {
   await renderPage();
 
   //submit form is never deleted, event listener can be registered here
@@ -24,13 +12,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   await registerEventListenerForRemoveAll()
   await registerEventListenerForResetDefault()
 });
-console.log("0 - event listener is registered, document.readyState is: ", document.readyState);
-
 
 async function renderPage() {
-  console.log("2 - document.readyState is: ", document.readyState);
   await renderTodoList()
-  console.log("3 - document.readyState is: ", document.readyState);
   await cleanTodoInputValue()
   await putFocusIntoTodoInput()
   await renderTodoListLengthWarning()
@@ -78,8 +62,6 @@ async function registerEventListenerForTodoFormSubmit() {
 
 async function registerEventListenersForDeleteButtons() {
   let deleteButtons = document.getElementsByClassName('delete-button');
-
-  deleteButtons = document.getElementsByClassName('delete-button');
   const deleteButtonsArray = [].slice.call(deleteButtons);
 
   for (const deleteButton of deleteButtonsArray) {
