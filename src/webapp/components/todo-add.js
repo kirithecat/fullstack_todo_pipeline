@@ -1,4 +1,4 @@
-class newTask extends HTMLElement {
+class todoAdd extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
@@ -10,4 +10,4 @@ class newTask extends HTMLElement {
   }
 }
 
-customElements.define('new-task', newTask);
+customElements.define('todo-add', todoAdd);

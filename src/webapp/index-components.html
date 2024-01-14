@@ -5,37 +5,13 @@
     <title>Todo App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script>
-  // Place in header (do not use async or defer)
-  // document.addEventListener('readystatechange', event => {
-  //   switch (document.readyState) {
-  //     case "loading":
-  //       console.log("document.readyState: ", document.readyState,
-  //         `- The document is still loading.`
-  //       );
-  //       break;
-  //     case "interactive":
-  //       console.log("document.readyState: ", document.readyState,
-  //         `- The document has finished loading DOM. `,
-  //         `- "DOMContentLoaded" event`
-  //       );
-  //       break;
-  //     case "complete":
-  //       console.log("document.readyState: ", document.readyState,
-  //         `- The page DOM with Sub-resources are now fully loaded. `,
-  //         `- "load" event`
-  //       );
-  //       break;
-  //   }
-  // });
-</script>
 <body>
     <div id="page-container">
         <div><todo-header/></div>
-        <div><new-task/></div>
+        <div><todo-add/></div>
         <div><warning-banner/></div>
-        <ul id="todo-list">
-        </ul>
+        <div><todo-list/></div>
+
 
         <button type="reset" id="remove-all">Remove all tasks</button>
         <button type="button" id="reset-default">Reset all tasks (default)</button>
@@ -44,6 +20,7 @@
 
 <script type="module" src="script.js"></script>
 <script src="./components/todo-header.js"  ></script>
-<script src="./components/new-task.js"  ></script>
+<script src="components/todo-add.js"  ></script>
 <script src="./components/warning-banner.js"   ></script>
+<script src="components/todo-list.js"  ></script>
 </html>
