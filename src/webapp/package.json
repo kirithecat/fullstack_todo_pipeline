@@ -4,11 +4,28 @@
   "description": "Simple todo list",
   "main": "script.js",
   "scripts": {
-    "start-webapp": "http-server -a localhost -p 8080 -c-1"
+    "start-webapp": "http-server -a localhost -p 8080 -c-1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "author": "Ivan Karaman aka @ivanAndCode",
   "license": "ISC",
   "dependencies": {
+    "@storybook/addon-docs": "^7.6.10",
     "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.10",
+    "@storybook/addon-interactions": "^7.6.10",
+    "@storybook/addon-links": "^7.6.10",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.0",
+    "@storybook/blocks": "^7.6.10",
+    "@storybook/html": "^7.6.10",
+    "@storybook/html-vite": "^7.6.10",
+    "@storybook/html-webpack5": "^8.0.0-alpha.14",
+    "@storybook/test": "^7.6.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.10"
   }
 }

@@ -130,3 +130,6 @@ dist
 
 #intellij
 .idea
+
+#storybook static assets
+src/webapp/storybook-static
