@@ -1,28 +1,40 @@
 import {getCurrentItems} from "../handlers/business-logic.js"
 
-class todoList extends HTMLElement {
+export class TodoList extends HTMLElement {
   constructor() {
     super();
-    this.innerHTML = `
-        <ul id="todo-list">
-        </ul>
-    `;
-    this.createTodoList()
+    this.innerHTML = this.createEmptyList();
   }
 
-  async createTodoList() {
+  createEmptyList() {
+    return `
+        <ul id="todo-list">
+        </ul>
+    `
+  }
+
+  async populateTodoList() {
     const todos = await getCurrentItems()
 
+    const list = document.getElementById('todo-list')
+    list.innerHTML = ''
     for (const todo of todos) {
-      console.log(todo)
       const index = todos.indexOf(todo);
       const li = document.createElement('li');
       li.innerHTML = await this.getInnerHtmlOfTodoItem(todo, index);
 
-      const list = document.getElementById('todo-list')
       list.appendChild(li)
-      console.log(li.innerHTML)
     }
+    console.log('ccccccccccc')
+    console.log(list.innerHTML)
+
+
+    console.log('bbbbbbbbbbbbbbbbbbb')
+    console.log(this.innerHTML)
+    this.innerHTML = list.innerHTML
+    console.log(this.innerHTML)
+
+
   }
 
   async getInnerHtmlOfTodoItem(todoItem, index) {
@@ -33,6 +45,4 @@ class todoList extends HTMLElement {
   }
 }
 
-
-
-customElements.define('todo-list', todoList);
+customElements.define('todo-list', TodoList);

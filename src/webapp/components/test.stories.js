@@ -1,5 +1,5 @@
 import "../components/todo-header.js"
-import "../components/todo-list.js"
+import "./todo-list.mjs"
 import "../components/todo-add.js"
 import '../style.css';
 
