@@ -25,17 +25,13 @@ async function renderPage() {
 }
 
 async function cleanTodoInputValue() {
-  let todoInput = document.getElementById('todo-input');
-  todoInput.value = ''
+  const todoAdd = new TodoAdd()
+  await todoAdd.cleanTodoInputValue()
 }
 
 async function putFocusIntoTodoInput() {
-  let todoInput = document.getElementById('todo-input');
-  //this will not only put focus, but also visually select input element
-  //https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus#focus_on_a_text_field
-  const focusOptions = {focusVisible: "true"}
-  // noinspection JSCheckFunctionSignatures
-  todoInput.focus(focusOptions)
+  const todoAdd = new TodoAdd()
+  await todoAdd.putFocusIntoTodoInput()
 }
 
 async function registerEventListenerForRemoveAll() {
