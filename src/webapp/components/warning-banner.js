@@ -1,4 +1,6 @@
-class warningBanner extends HTMLElement {
+import * as handlers from "../handlers/business-logic.js";
+
+export class WarningBanner extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `
@@ -7,6 +9,18 @@ class warningBanner extends HTMLElement {
       </div>
     `;
   }
+
+  async renderTodoListLengthWarning() {
+    const todos = await handlers.getCurrentItems() //todo fix this to use cookie value
+    const banner = document.getElementById('banner');
+
+    if (todos.length > 10) {
+      banner.style.display = 'block';
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
 }
 
-customElements.define('warning-banner', warningBanner);
+customElements.define('warning-banner', WarningBanner);

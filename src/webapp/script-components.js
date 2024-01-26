@@ -1,6 +1,7 @@
 import * as handlers from './handlers/business-logic.js'
 import {TodoList} from "./components/todo-list.js";
 import {TodoAdd} from "./components/todo-add.js";
+import {WarningBanner} from "./components/warning-banner.js";
 
 //this event listener is an entry point
 // it will:
@@ -114,12 +115,6 @@ async function resetDefaultItems() {
 }
 
 async function renderTodoListLengthWarning() {
-  const todos = await handlers.getCurrentItems() //todo fix this to use cookie value
-  const banner = document.getElementById('banner');
-
-  if (todos.length > 10) {
-    banner.style.display = 'block';
-  } else {
-    banner.style.display = 'none';
-  }
+  const warningBanner = new WarningBanner()
+  await warningBanner.renderTodoListLengthWarning()
 }
