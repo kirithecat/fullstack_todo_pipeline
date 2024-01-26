@@ -1,5 +1,5 @@
 import * as handlers from './handlers/business-logic.js'
-import {TodoList} from "./components/todo-list.mjs";
+import {TodoList} from "./components/todo-list.js";
 
 //this event listener is an entry point
 // it will:
