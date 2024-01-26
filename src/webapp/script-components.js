@@ -74,30 +74,8 @@ async function registerEventListenersForDeleteButtons() {
 }
 
 async function renderTodoList() {
-  // let todoList = document.getElementById('todo-list');
-  // const todos = await handlers.getCurrentItems()
-  //
-  // todoList.innerHTML = '';
-  // for (const todo of todos) {
-  //   const index = todos.indexOf(todo);
-  //   const li = document.createElement('li');
-  //   li.innerHTML = await getInnerHtmlOfTodoItem(todo, index);
-  //   todoList.appendChild(li);
-  // }
-
-  let todoList = document.getElementById('todo-list');
-  const newTodoList = new TodoList()
-  await newTodoList.populateTodoList()
-  console.log('aaaaaaaaaaaaaaaa')
-  console.log(newTodoList.innerHTML)
-  //todoList.replaceWith(newTodoList)
-}
-
-async function getInnerHtmlOfTodoItem(todoItem, index) {
-  return `
-      <span class="todo-text">${todoItem}</span>
-      <button id="delete-button-${index}" class="delete-button" name="${index}">X</button>
-    `;
+  const todoList = new TodoList()
+  await todoList.populateTodoList()
 }
 
 async function addTodo() {

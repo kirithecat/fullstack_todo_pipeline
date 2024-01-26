@@ -25,16 +25,8 @@ export class TodoList extends HTMLElement {
 
       list.appendChild(li)
     }
-    console.log('ccccccccccc')
-    console.log(list.innerHTML)
 
-
-    console.log('bbbbbbbbbbbbbbbbbbb')
-    console.log(this.innerHTML)
     this.innerHTML = list.innerHTML
-    console.log(this.innerHTML)
-
-
   }
 
   async getInnerHtmlOfTodoItem(todoItem, index) {
