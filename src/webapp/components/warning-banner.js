@@ -1,4 +1,4 @@
-import * as handlers from "../handlers/business-logic.js";
+import {getCurrentItems} from "../handlers/business-logic.js";
 
 export class WarningBanner extends HTMLElement {
   constructor() {
@@ -11,7 +11,7 @@ export class WarningBanner extends HTMLElement {
   }
 
   async renderTodoListLengthWarning() {
-    const todos = await handlers.getCurrentItems() //todo fix this to use cookie value
+    const todos = await getCurrentItems() //todo fix this to use cookie value
     const banner = document.getElementById('banner');
 
     if (todos.length > 10) {

@@ -2,6 +2,7 @@ import * as handlers from './handlers/business-logic.js'
 import {TodoList} from "./components/todo-list.js";
 import {TodoAdd} from "./components/todo-add.js";
 import {WarningBanner} from "./components/warning-banner.js";
+import {DeleteButtons} from "./components/buttons.js";
 
 //this event listener is an entry point
 // it will:
@@ -60,15 +61,17 @@ async function registerEventListenerForTodoFormSubmit() {
 }
 
 async function registerEventListenersForDeleteButtons() {
-  let deleteButtons = document.getElementsByClassName('delete-button');
-  const deleteButtonsArray = [].slice.call(deleteButtons);
-
-  for (const deleteButton of deleteButtonsArray) {
-    deleteButton.addEventListener('click', async (event) => {
-      const itemIndex = event.target.name
-      await deleteTodo(itemIndex)
-    });
-  }
+  // let deleteButtons = document.getElementsByClassName('delete-button');
+  // const deleteButtonsArray = [].slice.call(deleteButtons);
+  //
+  // for (const deleteButton of deleteButtonsArray) {
+  //   deleteButton.addEventListener('click', async (event) => {
+  //     const itemIndex = event.target.name
+  //     await deleteTodo(itemIndex)
+  //   });
+  // }
+  const deleteButtons = new DeleteButtons()
+  await deleteButtons.registerEventListenersForDeleteButtons()
 }
 
 async function renderTodoList() {
@@ -99,6 +102,7 @@ async function addTodo() {
   todoInput.value = '';
 }
 
+//todo bug is here, need to find a way to re-render the page without an infinite loop
 async function deleteTodo(index) {
   await handlers.deleteItem(index)
   await renderPage()
