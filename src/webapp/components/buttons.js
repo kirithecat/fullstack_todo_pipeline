@@ -10,6 +10,7 @@ export class Buttons extends HTMLElement {
   }
 }
 
+//todo this should be a separate file
 export class DeleteButtons extends HTMLElement {
   constructor() {
     super();
@@ -30,3 +31,4 @@ export class DeleteButtons extends HTMLElement {
 }
 
 customElements.define('todo-buttons', Buttons);
+customElements.define('delete-buttons', DeleteButtons);
