@@ -75,6 +75,12 @@ async function registerEventListenersForDeleteButtons() {
 }
 
 async function renderTodoList() {
+  //TODO refactor this to remove the api calling from the class
+  // const apiCallResults = makeCall()
+  //TODO this should be logic inside the API call
+  // if (apiCallResults not empty) {
+  //   do stuff
+  // }
   const todoList = new TodoList()
   await todoList.populateTodoList()
 }

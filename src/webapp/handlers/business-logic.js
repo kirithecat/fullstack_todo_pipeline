@@ -2,6 +2,9 @@ const backendBaseURL = 'https://localhost:443'
 
 export async function getCurrentItems() {
   const response = await fetch(`${backendBaseURL}/items`)
+  //TODO create a new API function here,
+  // generic utility to deal with responses in a centralised way
+  //validateResponse(response)
   if (response.ok) {
     const jsonResponse = await response.json()
     return jsonResponse.map(obj => obj.name)

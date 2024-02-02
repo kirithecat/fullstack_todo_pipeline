@@ -13,6 +13,8 @@ export class TodoList extends HTMLElement {
     `
   }
 
+  //TODO this method does 2 things and violates S in SOLID
+  // need to refactor and pass data as parameter (and make an example learning!)
   async populateTodoList() {
     const todos = await getCurrentItems()
 
