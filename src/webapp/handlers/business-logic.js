@@ -2,15 +2,16 @@ const backendBaseURL = 'https://localhost:443'
 
 export async function getCurrentItems() {
   const response = await fetch(`${backendBaseURL}/items`)
-  //TODO create a new API function here,
-  // generic utility to deal with responses in a centralised way
-  //validateResponse(response)
-  if (response.ok) {
-    const jsonResponse = await response.json()
-    return jsonResponse.map(obj => obj.name)
-  } else {
-    // Handle the error if the request was not successful
-    throw new Error(`Failed to fetch data from the backend: ${backendBaseURL}/items`);
+  await validateResponse(response)
+  const responseBody = await response.json()
+  //todo this requires an explanation, why can't api contract be changed to give back an array?
+  return responseBody.map(obj => obj.name)
+}
+
+async function validateResponse(response) {
+  if (!response.ok) {
+    // Throw an error if the request was not successful
+    throw new Error(`Failed to fetch data from the backend: ${response.url}`);
   }
 }
 
