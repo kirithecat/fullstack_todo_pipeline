@@ -61,15 +61,6 @@ async function registerEventListenerForTodoFormSubmit() {
 }
 
 async function registerEventListenersForDeleteButtons() {
-  // let deleteButtons = document.getElementsByClassName('delete-button');
-  // const deleteButtonsArray = [].slice.call(deleteButtons);
-  //
-  // for (const deleteButton of deleteButtonsArray) {
-  //   deleteButton.addEventListener('click', async (event) => {
-  //     const itemIndex = event.target.name
-  //     await deleteTodo(itemIndex)
-  //   });
-  // }
   const deleteButtons = new DeleteButtons()
   await deleteButtons.registerEventListenersForDeleteButtons()
 }

@@ -19,9 +19,7 @@ export class DeleteButtons extends HTMLElement {
   async registerEventListenersForDeleteButtons() {
     let deleteButtons = document.getElementsByClassName('delete-button');
     const deleteButtonsArray = [].slice.call(deleteButtons);
-    console.log('aaa')
     for (const deleteButton of deleteButtonsArray) {
-      console.log('bbb')
       deleteButton.addEventListener('click', async (event) => {
         const itemIndex = event.target.name
         await deleteItem(itemIndex)
