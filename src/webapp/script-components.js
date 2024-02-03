@@ -2,7 +2,7 @@ import * as handlers from './handlers/business-logic.js'
 import {TodoList} from "./components/todo-list.js";
 import {TodoAdd} from "./components/todo-add.js";
 import {WarningBanner} from "./components/warning-banner.js";
-import {DeleteButtons} from "./components/buttons.js";
+import {DeleteButtons} from "./components/delete-buttons.js";
 
 //this event listener is an entry point
 // it will:
