@@ -131,7 +131,7 @@ async function resetDefaultItems() {
 }
 
 async function renderTodoListLengthWarning() {
-  const todos = await handlers.getCurrentItems() //todo fix this to use cookie value
+  const todos = await handlers.getCurrentItems()
   const banner = document.getElementById('banner');
 
   if (todos.length > 10) {

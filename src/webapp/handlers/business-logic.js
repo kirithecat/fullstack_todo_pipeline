@@ -24,6 +24,7 @@ export async function addItem(item) {
 
 export async function deleteItem(index) {
   //TODO: here is the bug on the DB SQL side. id column need to be updated when removing a row.
+  // upd: why did I say it's a bug???
   const response = await fetch(`${backendBaseURL}/items/${index}`, {
     method: "DELETE",
   })

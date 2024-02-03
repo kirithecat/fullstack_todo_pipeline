@@ -11,7 +11,7 @@ export class WarningBanner extends HTMLElement {
   }
 
   async renderTodoListLengthWarning() {
-    const todos = await getCurrentItems() //todo fix this to use cookie value
+    const todos = await getCurrentItems()
     const banner = document.getElementById('banner');
 
     if (todos.length > 10) {
