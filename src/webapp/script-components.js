@@ -1,6 +1,6 @@
 import * as handlers from './handlers/business-logic.js'
 import {TodoList} from "./components/todo-list.js";
-import {TodoAdd} from "./components/todo-add.js";
+import {cleanTodoInputValue, TodoAdd} from "./components/todo-add.js";
 import {WarningBanner} from "./components/warning-banner.js";
 import {DeleteButtons} from "./components/delete-buttons.js";
 
@@ -22,14 +22,8 @@ async function renderPage() {
   await cleanTodoInputValue()
   await putFocusIntoTodoInput()
   await renderTodoListLengthWarning()
-
-  //delete buttons are dynamic, registering event listeners each time page changes
+  //delete buttons are dynamic, need to register event listeners each time page changes
   await registerEventListenersForDeleteButtons()
-}
-
-async function cleanTodoInputValue() {
-  const todoAdd = new TodoAdd()
-  await todoAdd.cleanTodoInputValue()
 }
 
 async function putFocusIntoTodoInput() {

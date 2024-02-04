@@ -10,7 +10,6 @@ export class TodoAdd extends HTMLElement {
     this.putFocusIntoTodoInput()
   }
 
-
   putFocusIntoTodoInput() {
     let todoInput = document.getElementById('todo-input');
     //this will not only put focus, but also visually select input element
@@ -19,11 +18,11 @@ export class TodoAdd extends HTMLElement {
     // noinspection JSCheckFunctionSignatures
     todoInput.focus(focusOptions)
   }
+}
 
-  cleanTodoInputValue() {
-    let todoInput = document.getElementById('todo-input');
-    todoInput.value = ''
-  }
+export function cleanTodoInputValue() {
+  let todoInput = document.getElementById('todo-input');
+  todoInput.value = ''
 }
 
 customElements.define('todo-add', TodoAdd);
