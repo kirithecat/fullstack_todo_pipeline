@@ -90,19 +90,12 @@ async function addTodo() {
   }
 
   if (todoText.length === 0) {
-    await renderPage()
     return
   }
 
   await handlers.addItem(todoText);
   await renderPage();
   todoInput.value = '';
-}
-
-//todo bug is here, need to find a way to re-render the page without an infinite loop
-async function deleteTodo(index) {
-  await handlers.deleteItem(index)
-  await renderPage()
 }
 
 async function resetItems() {
