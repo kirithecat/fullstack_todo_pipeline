@@ -20,7 +20,6 @@ export class WarningBanner extends HTMLElement {
       banner.style.display = 'none';
     }
   }
-
 }
 
 customElements.define('warning-banner', WarningBanner);
