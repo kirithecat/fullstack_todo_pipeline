@@ -1,8 +1,9 @@
-const express = require('express')
-const https = require('https')
-const {readFileSync} = require("node:fs");
-const {getItems, getItem, addItem, deleteItem, updateItem, resetItems, resetDefaultItems} = require("./db");
-const {isAuthorised} = require("./middleware/auth");
+import express from "express";
+import https from "https";
+import {readFileSync} from "node:fs";
+import {addItem, deleteItem, getItems, updateItem, resetDefaultItems, resetItems, getItem} from "./db.js";
+import {isAuthorised} from "./middleware/auth.js";
+
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
 const httpsPort = 443
