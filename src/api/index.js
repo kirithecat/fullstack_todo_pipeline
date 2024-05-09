@@ -3,6 +3,7 @@ import https from "https";
 import {readFileSync} from "node:fs";
 import {addItem, deleteItem, getItems, updateItem, resetDefaultItems, resetItems, getItem} from "./db.js";
 import {isAuthorised} from "./middleware/auth.js";
+import {weatherifyItem} from "./helpers/weather.js";
 
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -47,8 +48,9 @@ app.get('/items/', (req, res) => {
   res.send(getItems())
 })
 
-app.post('/items/', (req, res) => {
-  res.send(addItem(req.body.item))
+app.post('/items/', async (req, res) => {
+  const weatheredItem = await weatherifyItem(req.body.item)
+  res.send(addItem(weatheredItem))
 })
 
 app.get('/items/:index', (req, res) => {
