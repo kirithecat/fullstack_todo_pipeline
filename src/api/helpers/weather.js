@@ -6,9 +6,9 @@ export async function getWeather() {
   return data.hourly.temperature_2m[0]
 }
 
-export async function weatherifyItem(item){
+export async function weatherifyItem(item) {
   let weatheredItem = item
-  if(item.toLowerCase().includes("walk")) {
+  if (item.toLowerCase().includes("walk")) {
     const temperature = await getWeather()
     weatheredItem = weatheredItem + ` (Current temperature: ${temperature})`
   }
