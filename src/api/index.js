@@ -1,9 +1,9 @@
 import express from "express";
 import https from "https";
 import {readFileSync} from "node:fs";
-import {isAuthorised} from "./middleware/auth.js";
 import {items} from "./routes/items.js"
 import {reset} from "./routes/reset.js"
+import {middleware} from "./routes/middleware.js"
 
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -22,24 +22,10 @@ const httpsOptions = {
   rejectUnauthorized: false
 };
 
-//TODO this is not safe
-// Enable CORS for all routes
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Replace '*' with the origin of your frontend
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
-
 //--------------------------------
 //---------middleware-------------
 //--------------------------------
-app.route('/*').all((req, res, next) => {
-  isAuthorised()
-  next()
-})
-//parse request body as JSON
-app.use(express.json())
+app.use(middleware)
 
 //--------------------------------
 //----------routes----------------
