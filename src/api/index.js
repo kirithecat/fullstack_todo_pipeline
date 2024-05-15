@@ -1,9 +1,9 @@
 import express from "express";
 import https from "https";
 import {readFileSync} from "node:fs";
-import {addItem, deleteItem, getItems, updateItem, resetDefaultItems, resetItems, getItem} from "./db.js";
 import {isAuthorised} from "./middleware/auth.js";
-import {weatherifyItem} from "./helpers/weather.js";
+import {items} from "./routes/items.js"
+import {reset} from "./routes/reset.js"
 
 //TODO: explore swagger generation & jsdoc annotations (when doing contracts)
 const app = express()
@@ -44,41 +44,8 @@ app.use(express.json())
 //--------------------------------
 //----------routes----------------
 //--------------------------------
-app.get('/items/', (req, res) => {
-  res.send(getItems())
-})
-
-app.post('/items/', async (req, res) => {
-  const weatheredItem = await weatherifyItem(req.body.item)
-  res.send(addItem(weatheredItem))
-})
-
-app.get('/items/:index', (req, res) => {
-  res.send(getItem(req.params.index))
-})
-
-app.delete('/items/:index', (req, res) => {
-  deleteItem(req.params.index)
-  res.send()
-})
-
-app.patch('/items/:index', (req, res) => {
-  updateItem(req.params.index, req.body.item)
-  //todo is this 204, 201??
-  res.send()
-})
-
-app.post('/items/reset/default', (req, res) => {
-  resetItems()
-  resetDefaultItems()
-  res.send()
-})
-
-app.post('/items/reset', (req, res) => {
-  resetItems()
-  res.send()
-})
-
+app.use(items)
+app.use(reset)
 
 //--------------------------------
 //------server start--------------
