@@ -39,3 +39,5 @@ app.use(reset)
 https.createServer(httpsOptions, app).listen(httpsPort, () => {
   console.log(`Example app listening on port ${httpsPort}`)
 })
+
+export default app
