@@ -1,4 +1,12 @@
 import express from "express";
+import {
+  getItemsController,
+  createItemController,
+  getItemController,
+  deleteItemController,
+  updateItemController
+} from "../controllers/items.js";
+
 export const items = express.Router();
 import {getAllController} from "../controllers/get-all.js";
 import {weatherifyItem} from "../helpers/weather.js";
@@ -15,13 +23,8 @@ items.get('/items/:index', (req, res) => {
   res.send(getItem(req.params.index))
 })
 
-items.delete('/items/:index', (req, res) => {
-  deleteItem(req.params.index)
-  res.send()
-})
-
-items.patch('/items/:index', (req, res) => {
-  updateItem(req.params.index, req.body.item)
-  //todo is this 204, 201??
-  res.send()
-})
+items.get('/items/', getItemsController.get);
+items.post('/items/', createItemController.post)
+items.get('/items/:index', getItemController.get)
+items.delete('/items/:index', deleteItemController.delete)
+items.patch('/items/:index', updateItemController.update)
