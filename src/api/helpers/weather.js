@@ -1,7 +1,11 @@
 import got from 'got';
+import config from 'config'
 
 export async function getWeather() {
-  const url = "https://api.open-meteo.com/v1/forecast?latitude=40.90&longitude=174.88&hourly=temperature_2m&forecast_days=1"
+  //note that config is picked up based on the following env variable:
+  //NODE_ENV=production
+  //or if not present, default will be used
+  const url = config.get('apis.weather.url')
   const data = await got(url).json();
   return data.hourly.temperature_2m[0]
 }
