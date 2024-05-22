@@ -1,33 +1,25 @@
-import * as assert from "assert";
-import { expect } from 'chai';
-import {addItem, deleteItem, getItem, getItems, updateItem} from "../db.js";
+import {jest} from '@jest/globals'
 import request from 'supertest';
+
+import * as db from "../db.js"
+jest.mock('../db.js')
 
 import app from '../index.js'
 
-it('do stuff', async () => {
-  // const req = getMockReq()
-  // const {res, next, clearMockRes} = getMockRes()
-  // await getAllController.get(req, res, next)
-  // expect(res.body).toBe(true)
-  //
-  // const response = await request(app)
-  //   .get('/items')
-  //   .set('Accept', 'application/json')
-  // expect(response.headers["Content-Type"]).to.equal(/json/);
-  // expect(response.status).to.equal(200);
-  // expect(response.body.email).to.equal('foo@bar.com');
+// it('Look, mum, no e2e!', async () => {
+//   const response = await request(app).get('/items')
+//
+//   expect(response.headers["content-type"]).to.contain('application/json');
+//   expect(response.status).to.equal(200);
+// })
 
-  const items = getItems()
 
-  assert.equal(items, true)
-})
+it('Jest mock test!', async () => {
+  db.getItems.mockReturnValueOnce([{ id: 1, name: 'Item 1' }]);
 
-it('do stuff', async () => {
-  const response = await request(app)
-     .get('/items')
-     .set('Accept', 'application/json')
-  expect(response.headers["Content-Type"]).to.equal(/json/);
-  // expect(response.status).to.equal(200);
-  // expect(response.body.email).to.equal('foo@bar.com');
+  const response = await request(app).get('/items')
+
+  expect(response.headers["content-type"]).toContain('application/json');
+  expect(response.status).toEqual(200);
+  expect(db.getItems).toHaveBeenCalled()
 })
