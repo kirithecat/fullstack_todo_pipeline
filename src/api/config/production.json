@@ -1,7 +1,7 @@
 {
   "apis": {
     "weather": {
-      "url": "https://apifff.open-meteo.com/v1/forecast?latitude=40.90&longitude=174.88&hourly=temperature_2m&forecast_days=1"
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=40.90&longitude=174.88&hourly=temperature_2m&forecast_days=1"
     }
   }
 }
