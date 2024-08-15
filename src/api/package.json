@@ -7,7 +7,8 @@
   "author": "Ivan Karaman aka @ivanAndCode",
   "license": "ISC",
   "scripts": {
-    "test": "vitest",
+    "api-test": "vitest run items.test.js",
+    "unit-test": "vitest run unit.test.js",
     "start-api": "node index.js"
   },
   "dependencies": {
