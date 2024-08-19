@@ -1,8 +1,8 @@
-name: Run Tests
+name: Run Test Suite
 run-name: ${{ github.actor }} is running test suite 🚀
 on: [push]
 jobs:
-  Run-Tests:
+  Run-Test-Suite:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
