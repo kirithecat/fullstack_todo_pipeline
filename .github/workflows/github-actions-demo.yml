@@ -18,12 +18,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
-    #  - name: Check out repository code
-    #    uses: actions/checkout@v4
+     - name: Check out repository code
+       uses: actions/checkout@v4
      - name: Run API tests.
        run: |
-           sudo chown $USER ./src/api 
            cd ./src/api 
            npm install
+           npm run start-api
            npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Run-UI-Test:
+   runs-on: ubuntu-latest
+   steps:
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+    - name: Check out repository code
+      uses: actions/checkout@v4
+    - name: Run UI tests.
+      run: |
+          cd ./src/api
+          npm install
+          npm run start-api
+          cd ../../src/webapp
+          npm install
+          npm run start-webapp
+          cd ../../e2e
+          npm install
+          npm run test
+    - run: echo "🍏 This job's status is ${{ job.status }}."
