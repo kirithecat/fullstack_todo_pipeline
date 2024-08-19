@@ -15,6 +15,7 @@ jobs:
             npm run unit-test
       - name: Run API tests.
         run: |
+            sudo chown $USER ./src/api 
             cd ./src/api 
             npm install
             npm run api-test
