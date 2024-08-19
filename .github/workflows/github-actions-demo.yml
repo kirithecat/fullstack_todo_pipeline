@@ -1,8 +1,7 @@
 name: Run Test Suite
-# run-name: ${{ github.actor }} is running test suite 🚀
 on: [push]
 jobs:
-  Run-Test-Suite:
+  Run-Unit-Test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
@@ -13,10 +12,18 @@ jobs:
             cd ./src/api 
             npm install
             npm run unit-test
-      - name: Run API tests.
-        run: |
-            sudo chown $USER ./src/api 
-            cd ./src/api 
-            npm install
-            npm run api-test
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  Run-API-Test:
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+     - name: Check out repository code
+       uses: actions/checkout@v4
+     - name: Run API tests.
+       run: |
+           sudo chown $USER ./src/api 
+           cd ./src/api 
+           npm install
+           npm run api-test
+     - run: echo "🍏 This job's status is ${{ job.status }}."
