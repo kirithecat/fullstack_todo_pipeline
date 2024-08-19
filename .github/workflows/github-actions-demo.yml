@@ -8,9 +8,15 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Start of running unit tests.
+      - name: Run unit tests.
         run: |
             cd ./src/api 
             npm install
             npm run unit-test
+      - name: Run API tests.
+        run: |
+            cd ./src/api 
+            npm install
+            npm run start-api
+            npm run api-test
       - run: echo "🍏 This job's status is ${{ job.status }}."
