@@ -17,6 +17,5 @@ jobs:
         run: |
             cd ./src/api 
             npm install
-            npm run start-api
             npm run api-test
       - run: echo "🍏 This job's status is ${{ job.status }}."
