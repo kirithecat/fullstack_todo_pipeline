@@ -1,5 +1,5 @@
 name: Run Test Suite
-run-name: ${{ github.actor }} is running test suite 🚀
+# run-name: ${{ github.actor }} is running test suite 🚀
 on: [push]
 jobs:
   Run-Test-Suite:
