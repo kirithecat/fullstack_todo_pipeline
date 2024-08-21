@@ -28,7 +28,6 @@ jobs:
            cd ./src/api 
            npm install
            sudo npm run start-api
-           npm rebuild
            npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
