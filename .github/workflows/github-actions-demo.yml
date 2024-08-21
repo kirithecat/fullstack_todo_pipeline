@@ -32,7 +32,7 @@ jobs:
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
   UI-Test:
-   needs: API-Test
+   needs: [Unit-Test, API-Test]
    runs-on: ubuntu-latest
    steps:
     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
