@@ -37,14 +37,18 @@ jobs:
     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
     - name: Check out repository code
       uses: actions/checkout@v4
-    - name: Run UI tests.
+    - name: Start API
       run: |
           cd ./src/api`
           npm install
           npm run start-api
+    - name: Start webapp
+      run: |
           cd ../../src/webapp
           npm install
           npm run start-webapp
+    - name: Run UI test
+      run: |      
           cd ../../e2e
           npm install
           npm run test
