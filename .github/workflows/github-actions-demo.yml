@@ -1,7 +1,7 @@
 name: Run Test Suite
 on: [push]
 jobs:
-  Run-Unit-Test:
+  Unit-Test:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
@@ -14,7 +14,7 @@ jobs:
             npm run unit-test
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  Run-API-Test:
+  API-Test:
     runs-on: ubuntu-latest
     steps:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
@@ -31,7 +31,8 @@ jobs:
            npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  Run-UI-Test:
+  UI-Test:
+   needs: API-Test
    runs-on: ubuntu-latest
    steps:
     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
@@ -52,7 +53,7 @@ jobs:
           cd ./src/webapp
           npm install
           npm run start-webapp
-          
+
     - name: Run UI test
       run: |      
           cd ./e2e
