@@ -27,7 +27,6 @@ jobs:
        run: |
            cd ./src/api 
            node -v
-           ELECTRON_RUN_AS_NODE=true ./node_modules/.bin/electron --version
            npm ci
            sudo npm run start-api
            npm run api-test
