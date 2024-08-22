@@ -26,6 +26,7 @@ jobs:
      - name: Run API tests.
        run: |
            cd ./src/api 
+           node -v
            npm install
            sudo npm run start-api
            npm run api-test
@@ -44,7 +45,7 @@ jobs:
 
     - name: Start API
       run: |
-          cd ./src/api`
+          cd ./src/api
           npm install
           npm run start-api
 
