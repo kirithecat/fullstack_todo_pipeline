@@ -37,15 +37,16 @@ jobs:
     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
     - uses: actions/setup-node@v4
       with:
-       node-version: 18
+       node-version: 20
     - name: Check out repository code
       uses: actions/checkout@v4
 
     - name: Start API
       run: |
           cd ./src/api
-          npm ci
-          sudo npm run start-api
+          npm ci 
+          npm rebuild
+          sudo npm run start-api &
 
     - name: Start webapp
       run: |
