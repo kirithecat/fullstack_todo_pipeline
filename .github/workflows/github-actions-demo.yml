@@ -52,7 +52,7 @@ jobs:
       run: |
           cd ./src/webapp
           npm ci
-          npm run start-webapp
+          npm run start-webapp &
 
     - name: Run UI test
       run: |      
