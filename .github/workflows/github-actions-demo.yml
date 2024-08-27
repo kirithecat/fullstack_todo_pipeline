@@ -27,6 +27,7 @@ jobs:
        run: |
            cd ./src/api 
            npm ci
+           npm install electron --save-dev
            npm run start-electron
            npm run rebuild
            npm run post-install
