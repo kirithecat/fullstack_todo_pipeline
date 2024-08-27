@@ -18,14 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
-     - name: Check out repository code
-       uses: actions/checkout@v4
      - uses: actions/setup-node@v4
        with:
         node-version: 20
+     - name: Check out repository code
+       uses: actions/checkout@v4
      - name: Run API tests.
        run: |
            cd ./src/api 
+           nvm install 20
+           node -v
            npm ci
            sudo npm run start-api
            sudo npm run api-test
