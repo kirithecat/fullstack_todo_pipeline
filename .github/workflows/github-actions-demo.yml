@@ -27,6 +27,9 @@ jobs:
        run: |
            cd ./src/api 
            npm ci
+           npm run start-electron
+           npm run rebuild
+           npm run post-install
            sudo npm run start-api
            sudo npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
