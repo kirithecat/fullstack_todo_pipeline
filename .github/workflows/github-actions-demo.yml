@@ -30,7 +30,7 @@ jobs:
            npm ci
            ls ./node_modules
            sudo npm run start-api
-           npm run api-test
+           sudo npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
   UI-Test:
