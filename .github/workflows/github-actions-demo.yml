@@ -23,11 +23,13 @@ jobs:
         node-version: 20
      - name: Check out repository code
        uses: actions/checkout@v4
-     - name: Run API tests.
+     - name: Set up API tests.
        run: |
            cd ./src/api 
            npm ci
            sudo npm run start-api
+     - name: Run API tests.
+       run:
            sudo npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
