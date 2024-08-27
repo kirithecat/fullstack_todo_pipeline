@@ -27,9 +27,7 @@ jobs:
        run: |
            cd ./src/api 
            npm ci
-           sudo npm run start-api
-     - name: Run API tests.
-       run:
+           npm run start-api
            sudo npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
