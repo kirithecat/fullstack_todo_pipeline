@@ -9,10 +9,7 @@
   "scripts": {
     "api-test": "vitest run api.test.js",
     "unit-test": "vitest run unit.test.js",
-    "start-api": "node index.js",
-    "start-electron": "electron .",
-    "rebuild": "electron-rebuild -f -w better-sqlite3",
-    "post-install": "electron-builder install-app-deps"
+    "start-api": "node index.js"
   },
   "dependencies": {
     "better-sqlite3": "^9.6.0",
