@@ -27,7 +27,6 @@ jobs:
        run: |
            cd ./src/api 
            npm ci
-           node -v
            sudo npm run api-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
@@ -45,18 +44,18 @@ jobs:
     - name: Start API
       run: |
           cd ./src/api
-          npm install
-          npm run start-api
+          npm ci
+          sudo npm run start-api
 
     - name: Start webapp
       run: |
           cd ./src/webapp
-          npm install
+          npm ci
           npm run start-webapp
 
     - name: Run UI test
       run: |      
           cd ./e2e
-          npm install
+          npm ci
           npm run test
     - run: echo "🍏 This job's status is ${{ job.status }}."
