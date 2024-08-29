@@ -19,3 +19,14 @@ jobs:
   Staging-Environment:
     needs: [Deploy-to-Staging]
     uses: ./.github/workflows/run-test-suite-workflow.yml
+
+  Deploy-to-Production:
+    needs: [Staging-Environment]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+  
+  Production-Environment:
+    needs: [Deploy-to-Production]
+    uses: ./.github/workflows/run-test-suite-workflow.yml
+  
