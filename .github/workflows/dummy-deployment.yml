@@ -6,8 +6,13 @@ jobs:
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
 
-  Run-test-suite-workflow:
+  Run-tests:
     needs: [Deploy-to-Test]
     uses: ./.github/workflows/run-test-suite-workflow.yml
 
+  Deploy-to-Staging:
+    needs: [Run-tests]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
   
