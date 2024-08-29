@@ -17,5 +17,5 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
   
   Staging-Environment:
-    needs: [Deploy-to-Test]
+    needs: [Deploy-to-Staging]
     uses: ./.github/workflows/run-test-suite-workflow.yml
