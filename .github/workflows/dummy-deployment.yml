@@ -1,0 +1,6 @@
+name: Run Test Suite
+on:
+  workflow_call:
+jobs:
+  run-test-suite-workflow:
+    uses: ./.github/workflows/run-test-suite-workflow.yml
