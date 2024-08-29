@@ -1,6 +1,5 @@
-name: Run Test Suite
-on:
-  workflow_call:
+name: Dummy deployment pipeline
+on: push
 jobs:
   run-test-suite-workflow:
     uses: ./.github/workflows/run-test-suite-workflow.yml
