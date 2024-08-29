@@ -1,5 +1,11 @@
 name: Dummy deployment pipeline
 on: push
 jobs:
+  Deploy-to-Test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
   run-test-suite-workflow:
     uses: ./.github/workflows/run-test-suite-workflow.yml
+
+  
