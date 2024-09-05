@@ -14,7 +14,7 @@ jobs:
     needs: [Test-Environment]
     runs-on: ubuntu-latest
     steps:
-      - run: echo $env:STAGINGURL
+      - run: echo ${{env.STAGINGURL}}
   
   Staging-Environment:
     needs: [Deploy-to-Staging]
