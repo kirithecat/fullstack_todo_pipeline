@@ -4,7 +4,7 @@ jobs:
   Deploy-to-Test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+      - run: echo ${{vars.STAGINGURL}}
 
   Test-Environment:
     needs: [Deploy-to-Test]
@@ -14,7 +14,7 @@ jobs:
     needs: [Test-Environment]
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{env.STAGINGURL}}
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
   
   Staging-Environment:
     needs: [Deploy-to-Staging]
