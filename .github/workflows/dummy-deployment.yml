@@ -3,6 +3,8 @@ on: push
 jobs:
   Deploy-to-Test:
     runs-on: ubuntu-latest
+    env:
+      STAGINGURL: "Does this override the staging URl"
     steps:
       - run: echo ${{vars.STAGINGURL}}
 
