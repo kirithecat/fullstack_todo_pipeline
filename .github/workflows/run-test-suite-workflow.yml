@@ -16,7 +16,7 @@ jobs:
            cd ./src/api 
            npm ci
            set BASEURL=production &
-           sudo npm run start-api
+           sudo npm run start-api &
            sudo npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
 
