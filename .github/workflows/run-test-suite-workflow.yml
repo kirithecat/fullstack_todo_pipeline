@@ -2,6 +2,23 @@ name: Run Test Suite
 on:
   workflow_call:
 jobs:
+  API-e2e-Test:
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+     - uses: actions/setup-node@v4
+       with:
+        node-version: 20
+     - name: Check out repository code
+       uses: actions/checkout@v4
+     - name: Run API tests.
+       run: |
+           cd ./src/api 
+           npm ci
+           sudo npm run start-api
+           sudo npm run api-e2e-test
+     - run: echo "🍏 This job's status is ${{ job.status }}."
+
   Unit-Test:
     runs-on: ubuntu-latest
     steps:
