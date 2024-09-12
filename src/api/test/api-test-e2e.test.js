@@ -5,8 +5,9 @@ import {expect, it, describe, afterEach, vi} from 'vitest'
 
 describe('E2E tests (with or without mocking)', () => {
   it('Test hits the API endpoint', async () => {
+
     const baseUrl = 'https://localhost:443'
-    const baseUrl1 =  process.env.baseUrl
+    const baseUrl1 = process.env.BASEURL
    
     console.log(baseUrl1)
     
