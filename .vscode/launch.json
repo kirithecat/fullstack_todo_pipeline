@@ -19,7 +19,7 @@
             ],
             "type": "node",
             "env": {
-                "NODE_ENV": "production"
+                "NODE_ENV": "process.env.NODE_ENV"
               }
         },
 
@@ -38,7 +38,7 @@
             ],
             "type": "node",
             "env": {
-                "NODE_ENV": "production"
+                "NODE_ENV": "process.env.NODE_ENV"
               }
         }
     ]
