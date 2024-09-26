@@ -3,14 +3,16 @@ on: push
 jobs:
   Deploy-to-Test:
     runs-on: ubuntu-latest
-    env:
-      STAGINGURL: "Does this override the staging URl"
     steps:
-      - run: echo ${{vars.STAGINGURL}}
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
 
   Test-Environment:
     needs: [Deploy-to-Test]
-    uses: ./.github/workflows/run-test-suite-workflow.yml
+    runs-on: ubuntu-latest
+    env:
+      NODE_ENV: "default"
+    steps:
+      - uses: ./.github/workflows/run-test-suite-workflow.yml
 
   Deploy-to-Staging:
     needs: [Test-Environment]

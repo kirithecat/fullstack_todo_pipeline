@@ -7,7 +7,7 @@
   "author": "Ivan Karaman aka @ivanAndCode",
   "license": "ISC",
   "scripts": {
-    "api-test": "vitest run api.test.js",
+    "api-test": "vitest run api-with-mock.test.js",
     "api-e2e-test": "vitest run api-test-e2e.test.js",
     "unit-test": "vitest run unit.test.js",
     "start-api": "node index.js"

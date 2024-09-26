@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch api via NPM",
+            "request": "launch",
+            "outputCapture": "std",
+            "cwd": "${workspaceFolder}/src/api",
+            "runtimeArgs": [
+                "run-script",
+                "start-api",
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "env": {
+                "NODE_ENV": "production"
+              }
+        },
+
+        {
+            "name": "Launch api-e2e-tests via NPM",
+            "request": "launch",
+            "outputCapture": "std",
+            "cwd": "${workspaceFolder}/src/api",
+            "runtimeArgs": [
+                "run-script",
+                "api-e2e-test",
+            ],
+            "runtimeExecutable": "npm",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "node",
+            "env": {
+                "NODE_ENV": "production"
+              }
+        }
+    ]
+}
