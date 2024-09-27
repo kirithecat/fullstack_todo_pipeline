@@ -9,8 +9,6 @@ jobs:
   API-e2e-Test-On-Production-Environment:
     needs: [Deploy-to-Test]
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: production
     steps:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
      - uses: actions/setup-node@v4
@@ -23,8 +21,8 @@ jobs:
            cd ./src/api 
            npm ci
            export BASEURL=production &
-           sudo npm run start-api &
-           sudo npm run api-e2e-test
+           npm run start-api &
+           npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
   
 
