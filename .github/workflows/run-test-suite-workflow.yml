@@ -4,6 +4,8 @@ on:
 jobs:
   API-e2e-Test:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: ${{vars.NODE_ENV}}
     steps:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
      - uses: actions/setup-node@v4

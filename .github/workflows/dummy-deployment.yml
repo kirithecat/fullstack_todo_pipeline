@@ -9,8 +9,6 @@ jobs:
   Test-Environment:
     needs: [Deploy-to-Test]
     runs-on: ubuntu-latest
-    env:
-      NODE_ENV: "default"
     steps:
       - uses: ./.github/workflows/run-test-suite-workflow.yml
 
