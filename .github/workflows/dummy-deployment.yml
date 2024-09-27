@@ -23,7 +23,7 @@ jobs:
            cd ./src/api 
            npm ci
            export BASEURL=production &
-           npm run start-api &
+           sudo npm run start-api &
            npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
   
