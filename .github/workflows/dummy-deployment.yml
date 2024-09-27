@@ -8,9 +8,7 @@ jobs:
 
   Test-Environment:
     needs: [Deploy-to-Test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: ./.github/workflows/run-test-suite-workflow.yml
+    uses: ./.github/workflows/run-test-suite-workflow.yml
 
   Deploy-to-Staging:
     needs: [Test-Environment]
