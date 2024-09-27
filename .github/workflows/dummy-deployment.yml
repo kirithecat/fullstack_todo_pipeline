@@ -6,37 +6,56 @@ jobs:
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
 
-  Test-Environment:
+  API-e2e-Test-On-Production-Environment:
     needs: [Deploy-to-Test]
-    uses: ./.github/workflows/run-test-suite-workflow.yml
-
-  Deploy-to-Staging:
-    needs: [Test-Environment]
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
     steps:
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+     - uses: actions/setup-node@v4
+       with:
+        node-version: 18
+     - name: Check out repository code
+       uses: actions/checkout@v4
+     - name: Run API tests.
+       run: |
+           cd ./src/api 
+           npm ci
+           export BASEURL=production &
+           npm run start-api &
+           npm run api-e2e-test
+     - run: echo "🍏 This job's status is ${{ job.status }}."
   
-  Staging-Environment:
-    needs: [Deploy-to-Staging]
-    uses: ./.github/workflows/run-test-suite-workflow.yml
 
-  Deploy-to-Production:
-    needs: [Staging-Environment]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: trstringer/manual-approval@v1
-        with:
-          secret: ${{ github.TOKEN }}
-          approvers: kirithecat
-          minimum-approvals: 1
-          issue-title: "Deploying v1.3.5 to prod from staging"
-          issue-body: "Please approve or deny the deployment of version v1.3.5."
-          exclude-workflow-initiator-as-approver: false
-          additional-approved-words: ''
-          additional-denied-words: ''
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+
+  # Deploy-to-Staging:
+  #   needs: [Test-Environment]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
   
-  Production-Environment:
-    needs: [Deploy-to-Production]
-    uses: ./.github/workflows/run-test-suite-workflow.yml
+  # Staging-Environment:
+  #   needs: [Deploy-to-Staging]
+  #   uses: ./.github/workflows/run-test-suite-workflow.yml
+
+  # Deploy-to-Production:
+  #   needs: [Staging-Environment]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: trstringer/manual-approval@v1
+  #       with:
+  #         secret: ${{ github.TOKEN }}
+  #         approvers: kirithecat
+  #         minimum-approvals: 1
+  #         issue-title: "Deploying v1.3.5 to prod from staging"
+  #         issue-body: "Please approve or deny the deployment of version v1.3.5."
+  #         exclude-workflow-initiator-as-approver: false
+  #         additional-approved-words: ''
+  #         additional-denied-words: ''
+  #     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
+  
+  # Production-Environment:
+  #   needs: [Deploy-to-Production]
+  #   uses: ./.github/workflows/run-test-suite-workflow.yml
   
