@@ -20,8 +20,8 @@ jobs:
        run: |
            cd ./src/api 
            npm ci
-           export BASEURL=production &
            npm run start-api &
+           set NODE_ENV=staging &
            npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
   

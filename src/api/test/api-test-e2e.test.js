@@ -6,7 +6,7 @@ import config from 'config'
 //note that config is picked up based on the following env variable:
   //NODE_ENV=production
   //or if not present, default.json will be used
-  const baseUrl = config.get('apis.todo.url')
+  const environmentVariable = config.get('apis.todo.url')
 
 describe('E2E tests (with or without mocking)', () => {
   it('Test hits the API endpoint', async () => {
@@ -16,9 +16,9 @@ describe('E2E tests (with or without mocking)', () => {
     //3. update documentation 
     //4. update the workflow to populate the correct url for each stage
     //5. Make sure that it works on the pipeline
-    console.log(baseUrl)
+    console.log(environmentVariable)
 
-    const response = await axios.get(`${baseUrl}/items`, {
+    const response = await axios.get(`https://localhost:443/items`, {
       httpsAgent: new https.Agent({
         rejectUnauthorized: false, // Disable certificate check
       })
@@ -27,5 +27,8 @@ describe('E2E tests (with or without mocking)', () => {
     expect(response.headers["content-type"]).toContain('application/json');
     expect(response.status).toEqual(200);
     expect(response.data).toBeDefined()
+
+    console.log(environmentVariable)
+
   })
 })
