@@ -29,12 +29,15 @@ jobs:
 
      - name: Start Api 
        run: |
+           cd ./src/api 
            sudo npm run start-api 
 
      - run: echo "$NODE_ENV environment variable"
 
      - name: Run e2e Api tests 
-       run: sudo npm run api-e2e-test
+       run: |
+        cd ./src/api 
+        sudo npm run api-e2e-test
  
      - run: echo "🍏 This job's status is ${{ job.status }}."
   
