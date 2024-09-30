@@ -25,7 +25,6 @@ jobs:
            cd ./src/api 
            npm ci
            npm run start-api &
-           set NODE_ENV=staging &
            npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
   

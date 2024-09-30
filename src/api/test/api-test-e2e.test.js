@@ -16,7 +16,7 @@ describe('E2E tests (with or without mocking)', () => {
     //3. update documentation 
     //4. update the workflow to populate the correct url for each stage
     //5. Make sure that it works on the pipeline
-    console.log(environmentVariable)
+    console.log(process.env.NODE_ENV)
 
     const response = await axios.get(`https://localhost:443/items`, {
       httpsAgent: new https.Agent({
