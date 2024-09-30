@@ -1,6 +1,7 @@
 name: Dummy deployment pipeline
 on: push
 jobs:
+
   Deploy-to-Test:
     runs-on: ubuntu-latest
     steps:
@@ -9,7 +10,10 @@ jobs:
   API-e2e-Test-On-Production-Environment:
     needs: [Deploy-to-Test]
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
     steps:
+     - run: echo "$NODE_ENV environment variable"
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}." 
      - uses: actions/setup-node@v4
        with:
