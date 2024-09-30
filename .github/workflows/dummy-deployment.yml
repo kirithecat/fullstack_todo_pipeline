@@ -25,6 +25,7 @@ jobs:
            cd ./src/api 
            npm ci
            sudo npm run start-api &
+           sleep 10 &&
            sudo npm run api-e2e-test
      - run: echo "🍏 This job's status is ${{ job.status }}."
   
