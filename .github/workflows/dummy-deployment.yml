@@ -30,7 +30,7 @@ jobs:
      - name: Start Api 
        run: |
            cd ./src/api 
-           sudo npm run start-api 
+           sudo npm run start-api &
 
      - run: echo "$NODE_ENV environment variable"
 
