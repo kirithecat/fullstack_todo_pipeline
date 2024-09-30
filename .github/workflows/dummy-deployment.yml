@@ -20,13 +20,22 @@ jobs:
         node-version: 18
      - name: Check out repository code
        uses: actions/checkout@v4
-     - name: Run API tests.
+     - name: Install dependencies
        run: |
            cd ./src/api 
            npm ci
-           sudo npm run start-api &
-           sleep 10 &&
-           sudo npm run api-e2e-test
+
+     - run: echo "$NODE_ENV environment variable"
+
+     - name: Start Api 
+       run: |
+           sudo npm run start-api 
+
+     - run: echo "$NODE_ENV environment variable"
+
+     - name: Run e2e Api tests 
+       run: sudo npm run api-e2e-test
+ 
      - run: echo "🍏 This job's status is ${{ job.status }}."
   
 
