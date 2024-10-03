@@ -6,6 +6,8 @@ import config from 'config'
 //note that config is picked up based on the following env variable:
   //NODE_ENV=production
   //or if not present, default.json will be used
+  vi.stubEnv('NODE_ENV', process.env.NODE_ENV)
+
   console.log("its working",process.env.NODE_ENV)
 
   const environmentVariable = config.get('apis.todo.url')
